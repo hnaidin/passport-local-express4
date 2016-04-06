@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', { });
+    res.render('register', { user: req.user });
 });
 
 router.post('/register', function(req, res, next) {
@@ -65,12 +65,26 @@ router.get('/temp', function (req, res) {
         if (error !== null) {
             console.log('exec error: ' + error);
         }
-        res.status(200).send("stdout = " + stdout);
+        //res.status(200).send("stdout = " + stdout);
+        res.render('temp', { user: req.user, data: stdout, error: error});
     });
 });
 
 router.get('/feed', function (req, res) {
-    res.status(200).send("pong!");
+    //res.status(200).send("pong!");
+    var sys = require('sys')
+    var exec = require('child_process').exec;
+    var child;
+    // executes `pwd`
+    child = exec("pwd", function (error, stdout, stderr) {
+        sys.print('stdout: ' + stdout);
+        sys.print('stderr: ' + stderr);
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        }
+        //res.status(200).send("stdout = " + stdout);
+        res.render('temp', { user: req.user, data: stdout, error: error });
+    });
 });
 
 module.exports = router;
