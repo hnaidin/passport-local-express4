@@ -2,8 +2,13 @@ extends layout
 
 block content
   .container
+  if (!user)
     h1 Register Page
-    p.lead Say something worthwhile here.
+	p.lead Sorry, don't know you. Login first
+	a(href="/login") Login
+  if (user)
+    h1 Register Page
+    p.lead Register a new user for turtle awesomeness.
     br
     form(role='form', action="/register",method="post", style='max-width: 300px;')
       .form-group

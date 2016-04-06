@@ -6,7 +6,6 @@ block content
 			h1 You're currently not logged in
 			a(href="/login") Login
 			br
-			a(href="/register") Register
 		if (user)
 			h1 Welcome back, #{user.username}!
 
@@ -16,4 +15,6 @@ block content
 				button.btn.btn-primary(type="button")  See temperature stats
 			a(href="/feed") 
 				button.btn.btn-primary(type="button")  See feed stats
+			a(href="/register") 
+				button.btn.btn-primary(type="button")  Register another user
 
