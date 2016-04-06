@@ -59,31 +59,30 @@ router.get('/temp', function (req, res) {
     var exec = require('child_process').exec;
     var child;
     // executes `pwd`
-    child = exec("pwd", function (error, stdout, stderr) {
-        sys.print('stdout: ' + stdout);
-        sys.print('stderr: ' + stderr);
+    script_location = "/home/pi/IoTerrarium/scripts/get_temp.py"
+    child = exec(script_location, function (error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
         if (error !== null) {
             console.log('exec error: ' + error);
         }
-        //res.status(200).send("stdout = " + stdout);
         res.render('temp', { user: req.user, data: stdout, error: error});
     });
 });
 
 router.get('/feed', function (req, res) {
-    //res.status(200).send("pong!");
     var sys = require('sys')
     var exec = require('child_process').exec;
     var child;
     // executes `pwd`
+    script_location = "/home/pi/IoTerrarium/scripts/do_feed.py"
     child = exec("pwd", function (error, stdout, stderr) {
-        sys.print('stdout: ' + stdout);
-        sys.print('stderr: ' + stderr);
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
         if (error !== null) {
             console.log('exec error: ' + error);
         }
-        //res.status(200).send("stdout = " + stdout);
-        res.render('temp', { user: req.user, data: stdout, error: error });
+        res.render('feed', { user: req.user, data: stdout, error: error });
     });
 });
 
