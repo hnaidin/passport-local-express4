@@ -60,7 +60,8 @@ router.get('/temp', function (req, res) {
     var child;
     // executes `pwd`
     script_location = "/home/pi/IoTerrarium/scripts/get_temp.py"
-    child = exec(script_location, function (error, stdout, stderr) {
+    script_interpreter = "python "
+    child = exec(script_interpreter + script_location, function (error, stdout, stderr) {
         console.log('stdout: ' + stdout);
         console.log('stderr: ' + stderr);
         if (error !== null) {
